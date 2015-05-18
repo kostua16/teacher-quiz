@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
             name='Vote',
             fields=[
                 ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
-                ('answer', models.ForeignKey(to='TeacherGolos.AnswerType')),
+                ('answer', models.ForeignKey(to='TeacherGolos.models.Answer_Type')),
                 ('task', models.ForeignKey(to='TeacherGolos.Task')),
                 ('user', models.ForeignKey(to='TeacherGolos.UserProfile')),
             ],

@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b2abcbd-3091-46f9-9fdf-d13b7ba1784c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TeacherGolos/migrations/0001_initial.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Procfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TeacherGolosProject.iml" afterPath="$PROJECT_DIR$/.idea/TeacherGolosProject.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeacherGolos/admin.py" afterPath="$PROJECT_DIR$/TeacherGolos/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeacherGolos/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/TeacherGolos/migrations/0001_initial.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Procfile" afterPath="$PROJECT_DIR$/Procfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeacherGolos/models.py" afterPath="$PROJECT_DIR$/TeacherGolos/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeacherGolosProject/settings.py" afterPath="$PROJECT_DIR$/TeacherGolosProject/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeacherGolosProject/urls.py" afterPath="$PROJECT_DIR$/TeacherGolosProject/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TeacherGolosProject.iws" />
@@ -52,17 +43,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TeacherGolos/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0547504">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="43" />
               <folding>
-                <element signature="e#15#43#0" expanded="true" />
-                <element signature="e#790#806#0" expanded="true" />
-                <element signature="e#945#962#0" expanded="true" />
-                <element signature="e#1118#1133#0" expanded="true" />
-                <element signature="e#1287#1311#0" expanded="true" />
+                <element signature="e#836#852#0" expanded="true" />
+                <element signature="e#991#1008#0" expanded="true" />
+                <element signature="e#1165#1180#0" expanded="true" />
+                <element signature="e#1334#1358#0" expanded="true" />
+                <element signature="e#1531#1546#0" expanded="true" />
+                <element signature="e#1623#1731#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signals.py" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Python27/Lib/site-packages/django/db/models/signals.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="32" column="30" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="30" />
+              <folding>
+                <element signature="e#1071#1853#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,11 +92,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeacherGolos/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.863124">
+            <state vertical-scroll-proportion="0.0">
               <caret line="51" column="55" selection-start-line="51" selection-start-column="55" selection-end-line="51" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Procfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Procfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="42" selection-start-line="0" selection-start-column="42" selection-end-line="0" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -102,16 +116,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <push-targets>
+      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="heroku" target-branch="master" />
+    </push-targets>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/TeacherGolosProject/urls.py" />
         <option value="$PROJECT_DIR$/TeacherGolosProject/settings.py" />
-        <option value="$PROJECT_DIR$/TeacherGolos/models.py" />
         <option value="$PROJECT_DIR$/TeacherGolos/admin.py" />
+        <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$PROJECT_DIR$/TeacherGolos/models.py" />
       </list>
     </option>
   </component>
@@ -540,15 +557,22 @@
       <option name="project" value="LOCAL" />
       <updated>1431932823239</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="first release">
+      <created>1431950239630</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1431950239630</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1060" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32953367" sideWeight="0.51458335" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -556,7 +580,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32953367" sideWeight="0.48541668" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.48333332" order="1" side_tool="false" content_ui="tabs" />
@@ -564,7 +588,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.49583334" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -585,7 +608,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="add gitignore" />
+    <MESSAGE value="first release" />
+    <option name="LAST_COMMIT_MESSAGE" value="first release" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -636,11 +660,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="72" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
           <folding>
-            <element signature="e#15#43#0" expanded="true" />
-            <element signature="e#790#806#0" expanded="true" />
-            <element signature="e#945#962#0" expanded="true" />
-            <element signature="e#1118#1133#0" expanded="true" />
-            <element signature="e#1287#1311#0" expanded="true" />
+            <element signature="e#836#852#0" expanded="true" />
+            <element signature="e#991#1008#0" expanded="true" />
+            <element signature="e#1165#1180#0" expanded="true" />
+            <element signature="e#1334#1358#0" expanded="true" />
+            <element signature="e#1531#1546#0" expanded="true" />
+            <element signature="e#1623#1731#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -649,14 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="40" selection-start-line="0" selection-start-column="40" selection-end-line="0" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -950,25 +967,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TeacherGolos/models.py">
+    <entry file="file://$PROJECT_DIR$/TeacherGolos/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+          <caret line="51" column="55" selection-start-line="51" selection-start-column="55" selection-end-line="51" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="42" selection-start-line="0" selection-start-column="42" selection-end-line="0" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/django/db/models/signals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="30" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="30" />
           <folding>
-            <element signature="e#15#43#0" expanded="true" />
-            <element signature="e#790#806#0" expanded="true" />
-            <element signature="e#945#962#0" expanded="true" />
-            <element signature="e#1118#1133#0" expanded="true" />
-            <element signature="e#1287#1311#0" expanded="true" />
+            <element signature="e#1071#1853#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TeacherGolos/admin.py">
+    <entry file="file://$PROJECT_DIR$/TeacherGolos/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.863124">
-          <caret line="51" column="55" selection-start-line="51" selection-start-column="55" selection-end-line="51" selection-end-column="55" />
-          <folding />
+        <state vertical-scroll-proportion="0.0547504">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="43" />
+          <folding>
+            <element signature="e#836#852#0" expanded="true" />
+            <element signature="e#991#1008#0" expanded="true" />
+            <element signature="e#1165#1180#0" expanded="true" />
+            <element signature="e#1334#1358#0" expanded="true" />
+            <element signature="e#1531#1546#0" expanded="true" />
+            <element signature="e#1623#1731#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 # Create your models here.
 from django.db.models import Model
+from django.db.models.signals import pre_save
 
 USER_TYPES = (
     ('TEACHER', u'Преподаватель'),
@@ -32,6 +33,7 @@ class UserProfile(Model):
         return u'Профиль'
 
 
+
 class Task(Model):
     text = models.CharField(u'Текст задания', max_length=120)
     group = models.ForeignKey(UserGroup)
@@ -52,3 +54,13 @@ class Vote(Model):
     answer = models.ForeignKey(AnswerType)
     def __str__(self):
         return u'Ответ'
+
+
+
+def pre_save_receiver(self,sender, instance, created, **kwargs):
+        created=False
+        instance.userProfiles
+        profile=UserProfile.objects.get_or_create()
+        pass
+
+pre_save.connect(pre_save_receiver, sender=User)
