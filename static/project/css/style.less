@@ -1,0 +1,33 @@
+@my_main_color:#222222;
+@my_link_color:red;
+@my_h_color:@my_link_color + red;
+
+@my_style_name:my_header_style;
+
+.my_color_mixin(@color,@back_color){
+  color: @color;
+  background-color: @back_color;
+}
+
+.@{my_style_name} {
+  color: @my_main_color;
+  a {
+    .my_color_mixin(lighter(@my_h_color,40%),red);
+    border: double 2px;
+  }
+  h2 {
+    .my_color_mixin(darker(@my_h_color,40%),red);
+  }
+  h3 {
+    .my_color_mixin(@my_link_color,red);
+  }
+}
+.my_content_style {
+  :before {
+    .my_color_mixin(red,white);
+  }
+
+  :after{
+    .my_color_mixin(blue,red);
+  }
+}

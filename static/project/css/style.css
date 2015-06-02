@@ -1,0 +1,24 @@
+.my_header_style {
+  color: #222222;
+}
+.my_header_style a {
+  color: lighter(red red, 40%);
+  background-color: red;
+  border: double 2px;
+}
+.my_header_style h2 {
+  color: darker(red red, 40%);
+  background-color: red;
+}
+.my_header_style h3 {
+  color: red;
+  background-color: red;
+}
+.my_content_style :before {
+  color: red;
+  background-color: white;
+}
+.my_content_style :after {
+  color: blue;
+  background-color: red;
+}

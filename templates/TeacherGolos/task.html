@@ -1,0 +1,27 @@
+{% extends 'TeacherGolos/base.html' %}
+{% block content %}
+<form class="form form-horizontal" action="/task">
+    <div id="hidden_fields">
+        <input type="hidden" name="operation" value="{{ operation }}">
+    </div>
+    <div id="info" class="form-group">
+        <div id="info_text">
+            {{ task.text }}
+        </div>
+        <div id="info_picture">
+            <img src="/static/media/{{ task.photo.name }}" style="width:{{ task.photo_width }}px;height:{{ task.photo_height }}px;" />
+        </div>
+    </div>
+    <div id="answers" class="form-group">
+        {% for answer in answers %}
+            <div class="radio">
+                <label>
+                    <input type="radio" name="answer" value="{{ answer.pk }}" checked>
+                    {{ answer.text }}
+                </label>
+            </div>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Ответить</button>
+</form>
+{% endblock %}

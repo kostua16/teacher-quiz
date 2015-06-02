@@ -1,0 +1,23 @@
+{
+  "name": "TeacherGolosProject",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kostua16/teacher-quiz",
+  "authors": [
+    "Konstantin Leontiev <kostua16@gmail.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}

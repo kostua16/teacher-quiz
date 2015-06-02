@@ -1,7 +1,12 @@
 dj-static==0.0.6
 Django==1.8.1
+django-admin-tools==0.5.2
+django-qrcode==0.3
 djangorestframework==3.1.2
 gunicorn==19.3.0
+Pillow==2.8.1
 pystache==0.5.4
+qrcode==5.1
+six==1.9.0
 static==1.1.1
 static3==0.6.0

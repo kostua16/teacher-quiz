@@ -1,3 +1,4 @@
+# coding: utf8
 """
 Django settings for TeacherGolosProject project.
 
@@ -10,6 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.conf import global_settings
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -30,6 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,6 +43,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'TeacherGolos',
+    'rest_framework',
+    'qrcode'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,7 +91,31 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,  'static'),
+    ('media',os.path.join(BASE_DIR,  'media'),)
 )
 
+MEDIA_ROOT = os.path.join(BASE_DIR,  'media/')
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR,  'templates'),
+    os.path.join(BASE_DIR,  'TeacherGolos/templates'),
+)
+
+AUTH_USER_MODEL = 'TeacherGolos.Person'
+
+FIXTURE_DIRS = (
+   os.path.join(BASE_DIR,  'fixtures'),
+   os.path.join(BASE_DIR,  'TeacherGolos/fixtures'),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
+    'django.core.context_processors.static'
+)
+ADMIN_TOOLS_INDEX_DASHBOARD = 'TeacherGolos.dashboard.CustomIndexDashboard'
+
+AUTHENTICATION_BACKENDS =  global_settings.AUTHENTICATION_BACKENDS + (
+    'TeacherGolos.usermanager.MyBackend',
+)

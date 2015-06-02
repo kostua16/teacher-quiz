@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+{% block before_header %} {% endblock %}
+
+{% block head_block %}
+    <head lang="en">
+
+        {% block start_header %}
+            {% include "TeacherGolos/base/header/before_header.html" %}
+        {% endblock %}
+
+        {% block header %}{%  endblock %}
+
+        {% block end_header %}
+            {% include "TeacherGolos/base/header/after_header.html" %}
+        {% endblock %}
+
+    </head>
+{% endblock %}
+
+{% block after_header %} {% endblock %}
+
+{% block body %}
+    <body>
+
+        {% block before_sidebar %}{% endblock %}
+
+        <div id="sidebar" class="col-lg-12 sidebar  container-fluid">
+
+            {% block start_sidebar %}
+                {% include "TeacherGolos/base/sidebar/before_sidebar.html" %}
+            {% endblock %}
+
+            {% block sidebar %}{% endblock %}
+
+            {% block end_sidebar %}
+                {% include "TeacherGolos/base/sidebar/after_sidebar.html" %}
+            {% endblock %}
+
+        </div>
+
+        {% block after_sidebar %}{% endblock %}
+
+        {% block before_content %}{% endblock %}
+
+        <div id="content" class="col-lg-12 content  container-fluid">
+
+            {% block start_content %}
+                {% include "TeacherGolos/base/content/before_content.html" %}
+            {% endblock %}
+
+            {% block content %}{% endblock %}
+
+            {% block end_content %}
+                {% include "TeacherGolos/base/content/after_content.html" %}
+            {% endblock %}
+
+        </div>
+
+        {% block after_content %}{% endblock %}
+
+        {% block before_footer %}{% endblock %}
+
+        <div id="footer" class="col-lg-12 footer container-fluid">
+
+            {% block start_footer %}
+                {% include "TeacherGolos/base/footer/before_footer.html" %}
+            {% endblock %}
+
+            {% block footer %}{% endblock %}
+
+            {% block end_footer %}
+                {% include "TeacherGolos/base/footer/after_footer.html" %}
+            {% endblock %}
+
+        </div>
+
+        {% block after_footer %}{% endblock %}
+
+    </body>
+{% endblock %}
+</html>

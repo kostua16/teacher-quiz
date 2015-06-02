@@ -1,0 +1,35 @@
+{%  extends "TeacherGolos/base.html" %}
+{% block content %}
+    <form method="get">
+        <div id="hidden_fields">
+            <input type="hidden" name="redirect" value="{{ form.redirect.value }}">
+            <input type="hidden" name="operation" value="{{ form.operation.value }}">
+        </div>
+        <div id="login_id">
+            <label for="{{ form.login.id_for_label }}">{{ form.login.label }}:</label>
+            <input type="text" name="{{ form.login.html_name }}" id="{{ form.login.id_for_label }}" value="{{ form.login.value }}">
+            {% if form.login.errors %}
+                <ol>
+                {% for error in form.login.errors %}
+                    <li><strong>{{ error|escape }}</strong></li>
+                {% endfor %}
+                </ol>
+            {% endif %}
+        </div>
+        <div id="password_id">
+            <label for="{{ form.password.id_for_label }}">{{ form.password.label }}:</label>
+            <input type="text" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" value="{{ form.password.value }}">
+            {% if form.password.errors %}
+                <ol>
+                {% for error in form.password.errors %}
+                    <li><strong>{{ error|escape }}</strong></li>
+                {% endfor %}
+                </ol>
+            {% endif %}
+        </div>
+        <div id="submit_id">
+            <input type="submit" class="btn btn-primary" name="login" value="Войти"/>
+            <input type="submit" class="btn btn-primary" name="register" value="Зарегистрироваться"/>
+        </div>
+    </form>
+{% endblock %}
