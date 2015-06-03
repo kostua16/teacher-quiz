@@ -26,7 +26,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -119,3 +119,12 @@ ADMIN_TOOLS_INDEX_DASHBOARD = 'TeacherGolos.dashboard.CustomIndexDashboard'
 AUTHENTICATION_BACKENDS =  global_settings.AUTHENTICATION_BACKENDS + (
     'TeacherGolos.usermanager.MyBackend',
 )
+
+
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(("8.8.4.4", 80))
+MACHINE_IP = s.getsockname()[0]
+s.close()
+
+ALLOWED_HOSTS = ['127.0.0.1',MACHINE_IP]

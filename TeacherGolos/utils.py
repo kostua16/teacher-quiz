@@ -3,9 +3,10 @@ __author__ = 'kole0114'
 
 import random
 import string
+from TeacherGolosProject.settings import MACHINE_IP
 
 def create_pass():
-    token = "".join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for x in range(8))
+    token = "".join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for x in range(25))[1:10]
     return token
 
 def random_salt():
@@ -30,7 +31,7 @@ def url_add_if_need(input_list, result, name, default=None):
 
 
 def link_generate(**kwargs):
-    server = "127.0.0.1:8000/"
+    server = "%s:8000/" % MACHINE_IP
     url = ""
     params = ""
     salt=""
@@ -47,6 +48,8 @@ def link_generate(**kwargs):
 
     if '?' not in url:
         url += "?"
+    if url.startswith('/'):
+        url=url[1:]
 
     if 'http' not in server:
         server='http://'+server

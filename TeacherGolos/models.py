@@ -14,12 +14,16 @@ from TeacherGolos.permissions import GroupPermissionsMixin,UserGroup
 from TeacherGolos.usermanager import Person
 from TeacherGolos.utils import link_generate,create_pass
 import json
+import pickle
+from TeacherGolos.operations.WorkFlow import WorkFlow
+
 
 class ActionToken(Model):
     action = models.CharField(u'Действие',max_length=20)
     state = models.CharField(u'Состояние',max_length=20)
     code = models.CharField(u'Код',max_length=10)
-    params = models.CharField(u'Параметры',max_length=300)
+    params = models.CharField(u'Параметры',max_length=600,default="")
+    workflow = models.CharField(u'Задания',max_length=600,default="")
 
     def set_code(self):
         self.code=create_pass()
@@ -28,7 +32,13 @@ class ActionToken(Model):
     def save_params(self,params):
         try:
             self.params=json.dumps(params)
-            #self.save()
+            return True
+        except:
+            return False
+
+    def save_workflow(self,params):
+        try:
+            self.workflow=pickle.dumps(params)
             return True
         except:
             return False
@@ -39,8 +49,24 @@ class ActionToken(Model):
         except:
             return {}
 
+    def load_workflow(self):
+        try:
+            w= pickle.loads(self.workflow)
+            if w==None:
+                return WorkFlow()
+            return w
+        except:
+            return WorkFlow()
+
     def __unicode__(self):
-        return u'Событие %s[%s]' % (self.action,self.state)
+        return u'Событие %s[%s]' % (self.action,self.load_workflow().current)
+
+    def show_params(self):
+        return self.load_workflow().params
+
+    @property
+    def info_params(self):
+        return self.show_params()
 
     class Meta:
         verbose_name_plural = u"События"
@@ -79,7 +105,7 @@ class Task(Model):
     qr_img.short_description = u"QR-код"
 
     def __unicode__(self):
-        return u'Опрос'
+        return u'Опрос:%s' % self.text
     class Meta:
         verbose_name_plural = u"Задания"
 
@@ -88,7 +114,7 @@ class AnswerType(Model):
     text = models.CharField(u'Текст ответа', max_length=60)
     task = models.ForeignKey(Task)
     def __unicode__(self):
-        return u'Вариант ответа'
+        return u'Ответ : %s' % self.text
     class Meta:
         verbose_name_plural = u'Варианты ответа'
 
@@ -98,7 +124,11 @@ class Vote(Model):
     task = models.ForeignKey(Task)
     answer = models.ForeignKey(AnswerType)
     def __unicode__(self):
-        return u'Ответ'
+        return u'Ответ:[%s -> %s]' % (self.task.text,self.answer.text)
+    @property
+    def info(self):
+        return self.__unicode__()
+
     class Meta:
         verbose_name_plural = u'Ответы'
 

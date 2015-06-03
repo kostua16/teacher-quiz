@@ -1,6 +1,6 @@
 {% extends 'TeacherGolos/base.html' %}
 {% block content %}
-<form class="form form-horizontal" action="/task">
+<form class="form form-horizontal" action="/{{ address }}">
     <div id="hidden_fields">
         <input type="hidden" name="operation" value="{{ operation }}">
     </div>

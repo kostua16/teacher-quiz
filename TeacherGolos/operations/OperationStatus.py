@@ -34,3 +34,6 @@ class OperationStatus(object):
 
     def ok(self):
         return self.status is not None and self.status is not '' and self.status is not False
+
+    def finish(self):
+        return self.status is not None and self.token is not None and self.token.state=='finish'

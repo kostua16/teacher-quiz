@@ -73,6 +73,7 @@ class AnswerTypeAdmin(admin.ModelAdmin):
     pass
 
 class VoteAdmin(admin.ModelAdmin):
+    list_display = ('answer','task','user')
     pass
 
 class UserProfileAdmin(admin.ModelAdmin):

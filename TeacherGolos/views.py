@@ -12,6 +12,9 @@ from TeacherGolos.utils import link_generate, random_salt
 from TeacherGolos.forms import LoginForm, LinkForm, CreateLinkForm,TaskForm,AnswerForm
 from TeacherGolos.usermanager import Person,UserManager
 from TeacherGolos.operations import *
+from TeacherGolos.operations.TaskOperations import *
+from TeacherGolos.operations.IndexOperations import *
+from TeacherGolos.operations.LogoutOperations import *
 class TaskView(ListView):
     model = Task
 
@@ -34,105 +37,142 @@ def qr(request):
 
 
 def link(request):
-    link_form = LinkForm(request.GET)
-    if link_form.is_valid():
-        try:
-            token = ActionToken.objects.get(code=link_form.data.get('operation'))
-            params = token.load_params()
-            if token.action == 'task':
+    operator=OperationsManager(
+            (
 
-                if 'group' not in params \
-                        or params['group'] == '' \
-                        or 'code' not in params \
-                        or params['code'] == '' \
-                        or 'task' not in params\
-                        or params['task'] == '':
-                    token.state='invalid'
-                    token.save()
-                    return redirect(link_generate(url='index'))
-                try:
-                    group = UserGroup.objects.get(id=params['group'])
-                    task = UserGroup.objects.get(id=params['task'])
+                LoginOperation(),
+                LogoutOperation(),
+                RegisterOperation(),
+                AuthOperation(),
 
-                    if group.password != params['code']:
-                        token.state='invalid'
-                        token.save()
-                        return redirect(link_generate(url='index'))
+                InitTaskOperation(),
+                ErrorOperation(),
+                FinishOperation(),
 
-                    if token.state == 'check_login':
-                        if request.user.is_authenticated():
-                            params = token.load_params()
-                            params['user'] = request.user.pk
-                            token.save_params(params)
-                            token.state = 'check_group'
-                            token.save()
-                        else:
-                            token.state = 'auth'
-                            token.save()
+                GroupTestOperation(),
+                GroupAddOperation(),
 
-                    if request.user.is_authenticated() and  (
-                                    'user' in params and params['user'] != request.user.pk):
-                        token.state = 'auth'
-                        token.save()
-                        return redirect(link_generate(url='auth', operation=token.code,type='logout'))
+                RunTaskOperation(),
 
-                    if token.state == 'auth':
-                        if request.user.is_authenticated() and 'user' in params and params['user'] == request.user.pk:
-                            token.state = 'check_group'
-                            token.save()
-                        elif request.user.is_authenticated():
-                            token.state='check_login'
-                            token.save()
-                        else:
-                            return redirect(link_generate(url='auth', operation=token.code))
+            ),
+            (
+                TaskOperationCreater(),
+                IndexOperationCreater(),
+                LogoutOperationCreater()
 
-                    if token.state == 'check_group':
-                        try:
-                            filtered=request.user.groups.filter(id=group.pk)
-                            if filtered is not None:
-                                token.state = 'run'
-                                token.save()
-                            else:
-                                token.state = 'add_group'
-                                token.save()
-                        except UserGroup.DoesNotExist:
-                            token.state = 'add_group'
-                            token.save()
+            )
+        )
+    status=operator.run(request)
+    if status.need_render():
+        return status.render
+    elif status.finish():
+        return redirect(link_generate(url='index'))
 
-                    if token.state == 'add_group':
-                        request.user.groups.add(group)
-                        token.state = 'run'
-                        token.save()
+    elif status.token == None:
+        return render(request,"TeacherGolos/index.html")
 
-                    if token.state == 'run':
-                        return redirect(link_generate(url='task', operation=token.code))
-
-                except UserGroup.DoesNotExist or Task.DoesNotExist:
-                    token.state='invalid'
-                    token.save()
-                    return redirect(link_generate(url='index'))
-
-            return redirect(link_generate(operation=token.code))
-
-        except ActionToken.DoesNotExist:
-            pass
     else:
-        create_link_form = CreateLinkForm(request.GET)
-        if create_link_form.is_valid():
-            if create_link_form.data.get('type') == 'task':
-                token = ActionToken.objects.create()
-                token.set_code()
-                token.action = 'task'
-                token.state = 'check_login'
-                token.save_params({
-                    'task': create_link_form.data.get('task'),
-                    'code': create_link_form.data.get('code'),
-                    'group': create_link_form.data.get('group')
-                })
-                token.save()
-                return redirect(link_generate(operation=token.code))
+        return redirect(link_generate(url='link'))
+    # link_form = LinkForm(request.GET)
+    # if link_form.is_valid():
 
-    return redirect(link_generate(url='index'))
+        # try:
+        #     token = ActionToken.objects.get(code=link_form.data.get('operation'))
+        #     params = token.load_params()
+        #     if token.action == 'task':
+        #
+        #         if 'group' not in params \
+        #                 or params['group'] == '' \
+        #                 or 'code' not in params \
+        #                 or params['code'] == '' \
+        #                 or 'task' not in params\
+        #                 or params['task'] == '':
+        #             token.state='invalid'
+        #             token.save()
+        #             return redirect(link_generate(url='index'))
+        #         try:
+        #             group = UserGroup.objects.get(id=params['group'])
+        #             task = UserGroup.objects.get(id=params['task'])
+        #
+        #             if group.password != params['code']:
+        #                 token.state='invalid'
+        #                 token.save()
+        #                 return redirect(link_generate(url='index'))
+        #
+        #             if token.state == 'check_login':
+        #                 if request.user.is_authenticated():
+        #                     params = token.load_params()
+        #                     params['user'] = request.user.pk
+        #                     token.save_params(params)
+        #                     token.state = 'check_group'
+        #                     token.save()
+        #                 else:
+        #                     token.state = 'auth'
+        #                     token.save()
+        #
+        #             if request.user.is_authenticated() and  (
+        #                             'user' in params and params['user'] != request.user.pk):
+        #                 token.state = 'auth'
+        #                 token.save()
+        #                 return redirect(link_generate(url='auth', operation=token.code,type='logout'))
+        #
+        #             if token.state == 'auth':
+        #                 if request.user.is_authenticated() and 'user' in params and params['user'] == request.user.pk:
+        #                     token.state = 'check_group'
+        #                     token.save()
+        #                 elif request.user.is_authenticated():
+        #                     token.state='check_login'
+        #                     token.save()
+        #                 else:
+        #                     return redirect(link_generate(url='auth', operation=token.code))
+        #
+        #             if token.state == 'check_group':
+        #                 try:
+        #                     filtered=request.user.groups.filter(id=group.pk)
+        #                     if filtered is not None:
+        #                         token.state = 'run'
+        #                         token.save()
+        #                     else:
+        #                         token.state = 'add_group'
+        #                         token.save()
+        #                 except UserGroup.DoesNotExist:
+        #                     token.state = 'add_group'
+        #                     token.save()
+        #
+        #             if token.state == 'add_group':
+        #                 request.user.groups.add(group)
+        #                 token.state = 'run'
+        #                 token.save()
+        #
+        #             if token.state == 'run':
+        #                 return redirect(link_generate(url='task', operation=token.code))
+        #
+        #         except UserGroup.DoesNotExist or Task.DoesNotExist:
+        #             token.state='invalid'
+        #             token.save()
+        #             return redirect(link_generate(url='index'))
+        #
+        #     return redirect(link_generate(operation=token.code))
+        #
+        # except ActionToken.DoesNotExist:
+        #     pass
+    # else:
+    #     create_link_form = CreateLinkForm(request.GET)
+    #     if create_link_form.is_valid():
+    #         if create_link_form.data.get('type') == 'task':
+    #             token = ActionToken.objects.create()
+    #             token.set_code()
+    #             token.action = 'task'
+    #             token.state = 'init'
+    #             token.save_params({
+    #                 'task': create_link_form.data.get('task'),
+    #                 'code': create_link_form.data.get('code'),
+    #                 'group': create_link_form.data.get('group')
+    #             })
+    #             token.save()
+    #             return redirect(link_generate(operation=token.code))
+    #
+    # return redirect(link_generate(url='index'))
 
 
 
@@ -141,12 +181,16 @@ def auth(request):
         LoginOperation(),
         LogoutOperation(),
         RegisterOperation(),
-        AuthOperation()
+        AuthOperation(),
+        ErrorOperation(),
+        FinishOperation()
     ))
     status=operator.run(request)
     if status.need_render():
         return status.render
     elif status.ok():
+        return redirect(link_generate(url='index'))
+    else:
         return redirect(link_generate(url='link'))
 
     # form = LoginForm(request.GET)

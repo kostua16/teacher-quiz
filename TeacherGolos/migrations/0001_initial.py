@@ -22,7 +22,8 @@ class Migration(migrations.Migration):
                 ('action', models.CharField(max_length=20, verbose_name='\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435')),
                 ('state', models.CharField(max_length=20, verbose_name='\u0421\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435')),
                 ('code', models.CharField(max_length=10, verbose_name='\u041a\u043e\u0434')),
-                ('params', models.CharField(max_length=300, verbose_name='\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b')),
+                ('params', models.CharField(default=b'', max_length=600, verbose_name='\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b')),
+                ('workflow', models.CharField(default=b'', max_length=600, verbose_name='\u0417\u0430\u0434\u0430\u043d\u0438\u044f')),
             ],
             options={
                 'verbose_name_plural': '\u0421\u043e\u0431\u044b\u0442\u0438\u044f',

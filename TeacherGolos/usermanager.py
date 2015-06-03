@@ -38,7 +38,7 @@ class UserManager(BaseUserManager):
 
     def create_user(self, username, first_name,last_name, password,
                       **extra_fields):
-        return self._create_user(self, username, first_name,last_name, password,
+        return self._create_user( username, first_name,last_name, password,
                      False, **extra_fields)
 
     def create_superuser(self, username, first_name,last_name, password, **extra_fields):
@@ -80,8 +80,13 @@ class Person(AbstractBaseUser,GroupPermissionsMixin):
         return self.first_name
     objects = UserManager()
 
+    def __unicode__(self):
+        return "%s" % self.username
+
     class Meta:
         verbose_name_plural = u'Пользователи'
+
+
 
 
 class MyBackend(object):

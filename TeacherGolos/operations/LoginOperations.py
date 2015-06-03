@@ -1,4 +1,4 @@
-from TeacherGolos.forms import LoginForm
+
 from django.contrib.auth import authenticate, login, logout
 from TeacherGolos.usermanager import Person
 
@@ -8,6 +8,7 @@ from .BaseOperation import BaseOperation
 
 class LoginOperation(BaseOperation):
     def on_run(self,request):
+        from TeacherGolos.forms import LoginForm
         form = LoginForm(request.GET)
         if not form.is_valid():
             self.set_state('auth')
@@ -16,8 +17,9 @@ class LoginOperation(BaseOperation):
             user = authenticate(username=form.data.get("login"), password=form.data.get("password"))
             if user is not None and user.is_active:
                 login(request, user)
-            else:
                 self.set_state('auth')
+            else:
+
                 self.render_template(request, 'TeacherGolos/login.html', {"form": form})
         pass
 
@@ -26,17 +28,26 @@ class LoginOperation(BaseOperation):
 
 class RegisterOperation(BaseOperation):
     def on_run(self,request):
+        from TeacherGolos.forms import LoginForm
         form = LoginForm(request.GET)
         if not form.is_valid():
             self.set_state('auth')
             self.render_template(request, 'TeacherGolos/login.html', {"form": form})
+            return
         else:
             try:
-                user=Person.objects.create_user(form.data.get("login"),form.data.get("login"),form.data.get("login"),form.data.get("password"))
-                user.save()
-                login(request,user)
-            except:
+                test_user=Person.objects.get(username=form.data.get("login"))
                 self.set_state('auth')
+                self.render_template(request, 'TeacherGolos/login.html', {"form": form})
+                return
+            except Person.DoesNotExist:
+                try:
+                    user=Person.objects.create_user(form.data.get("login"),form.data.get("login"),form.data.get("login"),form.data.get("password"))
+                    user.save()
+                    self.set_state('login')
+                except Exception as e:
+                    print(e)
+                    self.set_fail()
         pass
 
     def get_needed_state(self):
@@ -45,22 +56,31 @@ class RegisterOperation(BaseOperation):
 
 class AuthOperation(BaseOperation):
     def on_run(self,request):
-        if not request.user.is_authenticated():
-            type=request.GET.get('register','None')
-            if type=='None':
-                self.set_state('login')
-            else:
-                self.set_state('register')
-        else:
-            if self.has_param('user'):
-                if self.get_param('user') == request.user.pk:
-                    self.set_state('check_group')
+        if self.has_param('need_auth'):
+            if not request.user.is_authenticated():
+                type=request.GET.get('register','None')
+                if type=='None':
+                    self.set_state('login')
+                    return
                 else:
-                    self.set_state('logout')
+                    print('goto register')
+                    self.set_state('register')
+                    return
             else:
-                self.set_param('user',request.user.pk)
-                self.set_state('auth')
-        pass
+                if self.has_param('user'):
+                    if self.get_param('user') == request.user.pk:
+                        self.go_next()
+                        return
+                    else:
+                        self.set_state('logout')
+                        return
+                else:
+                    self.set_param('user',request.user.pk)
+                    self.go_next()
+                    return
+                    # self.set_state('auth')
+        else:
+            self.go_next()
 
     def get_needed_state(self):
         return 'auth'
