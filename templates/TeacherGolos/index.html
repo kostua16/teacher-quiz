@@ -1,4 +1,11 @@
 {% extends 'TeacherGolos/base.html' %}
+{% block sidebar %}
+<ul class="nav nav-pills">
+    {% if is_auth == True %}
+        <li class="active"><a href="/index?type=logout">Выйти</a></li>
+    {% endif %}
+</ul>
+{% endblock %}
 {%  block content %}
     Привет
 {% endblock %}

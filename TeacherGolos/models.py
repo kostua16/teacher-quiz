@@ -115,6 +115,9 @@ class AnswerType(Model):
     task = models.ForeignKey(Task)
     def __unicode__(self):
         return u'Ответ : %s' % self.text
+
+    def answer_info(self):
+        return {u'text':unicode(self.text),u'pk':self.pk}
     class Meta:
         verbose_name_plural = u'Варианты ответа'
 

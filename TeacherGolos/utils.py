@@ -29,6 +29,11 @@ def url_add_if_need(input_list, result, name, default=None):
             r = _add_or_set_param_in_url(r,name, default)
     return r
 
+def is_auth(request):
+    if request.user.is_authenticated():
+        return True
+    else:
+        return False
 
 def link_generate(**kwargs):
     server = "%s:8000/" % MACHINE_IP
@@ -44,7 +49,7 @@ def link_generate(**kwargs):
     elif 'address' in kwargs:
         url += kwargs['address']
     else:
-        url +="link"
+        url +="index"
 
     if '?' not in url:
         url += "?"

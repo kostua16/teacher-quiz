@@ -5,23 +5,24 @@
         <input type="hidden" name="operation" value="{{ operation }}">
     </div>
     <div id="info" class="form-group">
-        <div id="info_text">
-            {{ task.text }}
+        <div id="info_text" class="h2">
+            <div class="label label-default">Вопрос:</div><div class="label label-primary">{{ task }}</div>
         </div>
         <div id="info_picture">
-            <img src="/static/media/{{ task.photo.name }}" style="width:{{ task.photo_width }}px;height:{{ task.photo_height }}px;" />
+            <img src="/static/media/{{ photo }}" style="width:{{ photo_width }}px;height:{{ photo_height }}px;" />
         </div>
     </div>
     <div id="answers" class="form-group">
         {% for answer in answers %}
-            <div class="radio">
+            <div class="radio ">
                 <label>
-                    <input type="radio" name="answer" value="{{ answer.pk }}" checked>
-                    {{ answer.text }}
+                    <input type="radio" name="answer" value="{{ answer.pk }}" unchecked>
+                    <div class="label label-info">Ответ:</div>
+                    <div class="label label-success">{{ answer.text }}</div>
                 </label>
             </div>
         {% endfor %}
     </div>
-    <button type="submit" class="btn btn-primary">Ответить</button>
+    <button type="submit" class="btn btn-primary">Выбрать</button>
 </form>
 {% endblock %}

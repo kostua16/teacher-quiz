@@ -2,7 +2,7 @@ __author__ = 'kole0114'
 
 from .OperationStatus import OperationStatus
 from django.shortcuts import render,redirect
-
+from TeacherGolos.utils import is_auth
 
 class BaseOperation(object):
     def __init__(self):
@@ -46,6 +46,7 @@ class BaseOperation(object):
         self.render=redirect(self.redirect)
 
     def render_template(self,request,template,data={}):
+        data['is_auth']=is_auth(request)
         self.render=render(request,template,data)
 
     def load_token(self,token):

@@ -13,7 +13,7 @@ class ErrorOperation(BaseOperation):
 
 class FinishOperation(BaseOperation):
     def on_run(self,request):
-        self.render_template(request,'TeacherGolos/index.html')
+        self.render_template(request,'TeacherGolos/index.html',{'auth':request.user.is_authenticated()})
         #self.set_state('finish')
 
     def get_needed_state(self):

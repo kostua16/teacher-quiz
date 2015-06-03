@@ -1,3 +1,4 @@
+# coding: utf8
 from TeacherGolos.forms import AnswerForm
 
 __author__ = 'kole0114'
@@ -34,9 +35,13 @@ class RunTaskOperation(BaseOperation):
             else:
                 context={
                             "operation":self.token.code,
-                            "task":task_item,
-                            "answers":task_item.answertype_set.all(),
-                            "address":'link'
+                            "task":task_item.text,
+                            "photo":task_item.photo.name,
+                            "photo_width":task_item.photo_width,
+                            "photo_height":task_item.photo_height,
+                            "answers":[x.answer_info() for x in task_item.answertype_set.all()],
+                            "address":'index',
+                            'auth':request.user.is_authenticated()
                         }
                 self.render_template(request, 'TeacherGolos/task.html', context)
                 return
@@ -44,5 +49,5 @@ class RunTaskOperation(BaseOperation):
             print(e)
         except Exception as e:
             print(e)
-        self.set_fail();
+        self.set_fail()
         return
